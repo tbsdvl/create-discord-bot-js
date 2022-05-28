@@ -23,7 +23,12 @@ class DiscordBot {
 
     // Method to listen for app on instance's port
     listenForPort() {
-        this.app.listen(this.PORT);
+
+        try{
+            this.app.listen(this.PORT);
+        } catch (err) {
+            throw err;
+        }
     }
 }
 
