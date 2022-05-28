@@ -1,3 +1,3 @@
-### create-discord-bot
+### create-discord-bot-js
 
 ## Startup
