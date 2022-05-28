@@ -71,7 +71,6 @@ class DiscordBot {
 
         try{
             for(let i = 0; i < this.middleware.length; i++) {
-                console.log(this.middleware[i]);
                 this.app.use(this.middleware[i]);
             }
         } catch (err) {
