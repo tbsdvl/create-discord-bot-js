@@ -1,4 +1,4 @@
-import { DiscordBot } from "../models";
+import DiscordBot from "../models/DiscordBot.js";
 
 /** 
  *@param {DiscordBot} bot A discord bot 

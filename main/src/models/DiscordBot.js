@@ -1,4 +1,4 @@
-import { Express } from "express";
+import Express from "express";
 
 class DiscordBot {
 
@@ -26,4 +26,4 @@ class DiscordBot {
     }
 }
 
-export { DiscordBot }
+export default DiscordBot;
