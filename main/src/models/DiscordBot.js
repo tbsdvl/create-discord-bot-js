@@ -23,7 +23,7 @@ class DiscordBot {
         this.PORT = PORT;
     }
 
-    // Method to listen for app on instance's port
+    // Method to tell app to start up on DiscordBot instance's port
     listenForPort() {
 
         if(this.server) {
@@ -46,6 +46,7 @@ class DiscordBot {
         }
 
         try {
+            console.log('Closing server...')
             this.server.close();
             this.server = false;
             return;

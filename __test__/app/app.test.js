@@ -13,8 +13,7 @@ beforeAll(() => {
         // middleware: [express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) })]
     }
 
-    const newBot = new DiscordBot(options);
-    Bot = newBot;
+    Bot = new DiscordBot(options);
 });
 
 afterEach(() => {
@@ -41,11 +40,22 @@ describe('startUpDiscordBot', () => {
     it('should start the app to listen on port 3000', () => {
         expect(startUpDiscordBot(Bot)).toBe(true);
     });
+
+    it("should log the currently active DiscordBot's express server to the console", () => {
+            startUpDiscordBot(Bot);
+            Bot.listenForPort();
+    });
 });
 
 describe('stopListening', () => {
-    
-    it("should close the DiscordBot's express app currently listening for a port", () => {
+
+    it("should indicate that the DiscordBot's express app is currently offline", () => {
         expect(Bot.server).toBe(false);
     });
-})
+    
+    it("should close the DiscordBot's express app currently listening for a port", () => {
+        startUpDiscordBot(Bot);
+        Bot.stopListening();
+        expect(Bot.server).toBe(false);
+    });
+});
