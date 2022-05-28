@@ -1,9 +1,11 @@
 import DiscordBot from "../models/DiscordBot.js";
 
 /** 
- *@param {DiscordBot} bot A discord bot 
+ *@param {DiscordBot} bot An instance of type DiscordBot 
 */
 export const startUpDiscordBot = (bot) => {
+
+    // Check for a bot's port
 
     try {
 
