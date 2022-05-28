@@ -66,9 +66,6 @@ class DiscordBot {
             return;
         }
 
-        // Check for middleware
-        console.log('First item in middlware array:', this.middleware[0]);
-
         try{
             for(let i = 0; i < this.middleware.length; i++) {
                 this.app.use(this.middleware[i]);

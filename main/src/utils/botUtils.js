@@ -1,6 +1,5 @@
 import DiscordBot from "../models/DiscordBot.js";
 import { verifyKey } from "discord-interactions";
-import { Request, Response } from 'express';
 
 /** 
  *@param {DiscordBot} bot An instance of class DiscordBot 
@@ -15,6 +14,9 @@ export const startUpDiscordBot = (bot) => {
     try {
         // Tell express app to start listening on the specified port on DiscordBot
         bot.startListening();
+
+        // Use the Bot's middleware
+        bot.useMiddleware();
 
         // Return true if no errors thrown
         console.log(`DiscordBot listening on port: ${bot.PORT}`);
