@@ -19,7 +19,7 @@ beforeAll(() => {
 
 afterEach(() => {
     Bot.stopListening();
-})
+});
 
 describe('DiscordBot constructor', () => {
 
