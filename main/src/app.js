@@ -2,10 +2,15 @@ import express from 'express';
 import { DiscordBot } from './models/index.js';
 import { startUpDiscordBot } from './utils/botUtils.js';
 
-// Start a new express app
-const app = express();
+// Express app options
+const options = {
+    app: express(),
+    PORT: process.env.PORT || 3000,
+};
 
-// PORT from .env
-const PORT = process.env.PORT;
+// Express middleware
+// const middleware = [
+//     express.json({ verify: })
+// ];
 
-startUpDiscordBot(new DiscordBot(app, PORT));
+startUpDiscordBot(new DiscordBot(options));

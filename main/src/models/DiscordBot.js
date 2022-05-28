@@ -7,9 +7,10 @@ class DiscordBot {
      * @param {Express} app The DiscordBots express application
      * @param {string | number} PORT DiscordBot's express app will listen for this port number
      */ 
-    constructor(app, PORT) {
-        this.app = app;
-        this.PORT = PORT;
+    constructor(options, middleware=null) {
+        this.app = options.app;
+        this.PORT = options.PORT;
+        this.middleware = middleware || null;
     }
 
     /**
@@ -21,7 +22,7 @@ class DiscordBot {
     }
 
     // Method to listen for app on instance's port
-    startApp() {
+    listenForPort() {
         this.app.listen(this.PORT);
     }
 }

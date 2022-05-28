@@ -10,7 +10,7 @@ export const startUpDiscordBot = (bot) => {
     try {
 
         // Start up app
-        bot.startApp();
+        bot.listenForPort();
 
         // Return true if no errors thrown
         console.log(`Bot started on port: ${bot.PORT}`)
