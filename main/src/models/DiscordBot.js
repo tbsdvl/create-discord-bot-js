@@ -11,7 +11,7 @@ class DiscordBot {
     constructor(options, middleware=null) {
         this.app = options.app;
         this.PORT = options.PORT;
-        this.middleware = middleware || null;
+        this.middleware = middleware || [];
         this.server = false;
     }
 
@@ -23,8 +23,8 @@ class DiscordBot {
         this.PORT = PORT;
     }
 
-    // Method to listen for app on instance's port
-    listenForPort() {
+    // Method to tell app to start up on DiscordBot instance's port
+    startListening() {
 
         if(this.server) {
             console.log("DiscordBot's express application is already listening on port:" + this.PORT);
@@ -46,9 +46,30 @@ class DiscordBot {
         }
 
         try {
+            console.log('Closing server...');
             this.server.close();
             this.server = false;
             return;
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    setMiddleware(middleware) {
+        this.middleware = middleware;
+    }
+
+    useMiddleware() {
+
+        if(this.middleware.length < 1) {
+            console.log('Discord Bot has no middleware');
+            return;
+        }
+
+        try{
+            for(let i = 0; i < this.middleware.length; i++) {
+                this.app.use(this.middleware[i]);
+            }
         } catch (err) {
             throw err;
         }

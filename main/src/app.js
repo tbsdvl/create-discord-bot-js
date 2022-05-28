@@ -1,6 +1,7 @@
 import express from 'express';
+import 'dotenv';
 import { DiscordBot } from './models/index.js';
-import { startUpDiscordBot } from './utils/botUtils.js';
+import { startUpDiscordBot, verifyDiscordRequest } from './utils/botUtils.js';
 
 // Express app options
 const options = {
@@ -9,8 +10,8 @@ const options = {
 };
 
 // Express middleware
-// const middleware = [
-//     express.json({ verify: })
-// ];
+const middleware = [
+    express.json({ verify: verifyDiscordRequest(process.env.PUBLIC_KEY)})
+];
 
-startUpDiscordBot(new DiscordBot(options));
+startUpDiscordBot(new DiscordBot(options, middleware));
