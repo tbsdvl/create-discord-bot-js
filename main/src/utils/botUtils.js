@@ -26,11 +26,6 @@ export const startUpDiscordBot = (bot) => {
     };
 };
 
-// Function to verify a request from the Bot's discord client key
-// Need to check the signature and timestamp of the request
-// If the signature & timestamp are not valid after calling verifyKey,
-// Return an 401 status code back to the client
-
 /**
  * 
  * @param {string} clientKey The DiscordBot's PUBLIC_KEY .env variable
