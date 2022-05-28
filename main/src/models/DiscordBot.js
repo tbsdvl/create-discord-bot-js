@@ -11,7 +11,7 @@ class DiscordBot {
     constructor(options, middleware=null) {
         this.app = options.app;
         this.PORT = options.PORT;
-        this.middleware = middleware || null;
+        this.middleware = middleware || [];
         this.server = false;
     }
 

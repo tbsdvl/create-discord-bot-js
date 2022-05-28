@@ -41,7 +41,7 @@ describe('startUpDiscordBot', () => {
         expect(startUpDiscordBot(Bot)).toBe(true);
     });
 
-    it("should log the currently active DiscordBot's express server to the console", () => {
+    it("should log the currently active DiscordBot's express server port to the console", () => {
             startUpDiscordBot(Bot);
             Bot.listenForPort();
     });
