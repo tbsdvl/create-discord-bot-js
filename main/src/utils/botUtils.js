@@ -1,4 +1,4 @@
-import DiscordBot from "../models/DiscordBot.js";
+import { DiscordBot } from "../models/index.js";
 import { verifyKey } from "discord-interactions";
 
 /** 
