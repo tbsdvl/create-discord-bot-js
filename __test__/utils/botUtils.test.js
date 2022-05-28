@@ -43,9 +43,9 @@ afterEach(() => {
 
 describe('verifyDiscordRequest', () => {
 
-    // it('should throw error for invalid request signature and timestamp', () => {
-    //     expect(Bot.app.use(express.json({ verify: verifyDiscordRequest(testDummyKey) }))).toThrow();
-    // });
+    it('should throw error for invalid PUBLIC_KEY string', () => {
+        expect(Bot.app.use(express.json({ verify: verifyDiscordRequest(testDummyKey) }))).toThrow();
+    });
 
     it('should return a 401 status message on response', () => {
         expect(Bot.app.use(express.json({ verify: verifyDiscordRequest(process.env.PUBLIC_KEY) }))).toThrow();

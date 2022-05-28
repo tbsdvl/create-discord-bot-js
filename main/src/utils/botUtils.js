@@ -14,7 +14,7 @@ export const startUpDiscordBot = (bot) => {
 
     try {
         // Tell express app to start listening on the specified port on DiscordBot
-        bot.listenForPort();
+        bot.startListening();
 
         // Return true if no errors thrown
         console.log(`DiscordBot listening on port: ${bot.PORT}`);

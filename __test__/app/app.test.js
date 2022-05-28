@@ -1,7 +1,8 @@
 import { DiscordBot } from '../../main/src/models/index.js';
-import { startUpDiscordBot } from '../../main/src/utils/botUtils';
+import { startUpDiscordBot, verifyDiscordRequest } from '../../main/src/utils/botUtils';
 import express from "express";
 import 'jest';
+import 'dotenv';
 
 let Bot;
 
@@ -10,7 +11,6 @@ beforeAll(() => {
     const options = {
         app: express(),
         PORT: 3000,
-        // middleware: [express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) })]
     }
 
     Bot = new DiscordBot(options);
@@ -43,7 +43,7 @@ describe('startUpDiscordBot', () => {
 
     it("should log the currently active DiscordBot's express server port to the console", () => {
             startUpDiscordBot(Bot);
-            Bot.listenForPort();
+            Bot.startListening();
     });
 });
 
@@ -57,5 +57,36 @@ describe('stopListening', () => {
         startUpDiscordBot(Bot);
         Bot.stopListening();
         expect(Bot.server).toBe(false);
+    });
+});
+
+// Test the app's middleware
+describe('useMiddleware', () => {
+
+    it("should add an array of express server middleware to the DiscordBot", () => {
+        // Middleware array
+        const middleware = [
+            express.json({ verify: verifyDiscordRequest(process.env.PUBLIC_KEY)})
+        ];
+
+        // Add middleware array to bot
+        Bot.setMiddleware(middleware);
+
+        expect(Bot.middleware.length).toBe(1);
+    });
+
+    it("should call an app.use() method on each middleware item in a DiscordBot's middleware array", () => {
+        // Middleware array
+        const middleware = [
+            express.json({ verify: verifyDiscordRequest(process.env.PUBLIC_KEY)})
+        ];
+
+        Bot.setMiddleware(middleware);
+
+        // Start the Discord Bot's express server
+        Bot.startListening();
+
+        expect(Bot.middleware.length).toBe(1);
+        Bot.useMiddleware();
     });
 });
