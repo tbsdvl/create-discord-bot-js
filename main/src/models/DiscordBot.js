@@ -4,8 +4,8 @@ class DiscordBot {
 
     /**
      * 
-     * @param {Express} app 
-     * @param {string | number} PORT 
+     * @param {Express} app The DiscordBots express application
+     * @param {string | number} PORT DiscordBot's express app will listen for this port number
      */ 
     constructor(app, PORT) {
         this.app = app;
