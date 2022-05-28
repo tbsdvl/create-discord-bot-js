@@ -1,6 +1,7 @@
 import { DiscordBot } from '../../main/src/models/index.js';
 import { startUpDiscordBot } from '../../main/src/utils/botUtils';
 import express from "express";
+import 'jest';
 
 // Setup an App interface that has fields for
 // express(), a port, an array of middleware, 
@@ -45,7 +46,7 @@ describe('App interface', () => {
     });
 
     it("should return the PORT for the DiscordBot", () => {
-        expect(typeof Bot.PORT).toBe(string || number);
+        expect(Bot.PORT).toBe(3000);
     });
 
     it('should start the app to listen on port 3000', () => {

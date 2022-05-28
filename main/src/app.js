@@ -6,6 +6,6 @@ import { startUpDiscordBot } from './utils/botUtils.js';
 const app = express();
 
 // PORT from .env
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 startUpDiscordBot(new DiscordBot(app, PORT));
