@@ -5,15 +5,18 @@ import DiscordBot from "../models/DiscordBot.js";
 */
 export const startUpDiscordBot = (bot) => {
 
-    // Check for a bot's port
+    // Check for a bot's abilty to listen for a port
+    if(!bot.app.listen) {
+        throw new TypeError("DiscordBot's app cannot access 'listen' method.")
+    }
 
     try {
 
-        // Start up app
+        // Tell express app to start listening on the specified port on DiscordBot
         bot.listenForPort();
 
         // Return true if no errors thrown
-        console.log(`Bot started on port: ${bot.PORT}`)
+        console.log(`DiscordBot listening on port: ${bot.PORT}`)
         return true;
         
     } catch (err) {
@@ -21,3 +24,10 @@ export const startUpDiscordBot = (bot) => {
         throw err;
     };
 };
+
+// Function to verify a request from the Bot's discord client key
+// Need to check the signature and timestamp of the request
+// If the signature & timestamp are not valid after calling verifyKey,
+// Return an 401 status code back to the client
+
+// Function to check for installed commands on the Discord server
