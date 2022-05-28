@@ -83,6 +83,8 @@ describe('useMiddleware', () => {
 
         Bot.setMiddleware(middleware);
 
+        console.log(Bot.middleware.length);
+
         // Start the Discord Bot's express server
         Bot.startListening();
 

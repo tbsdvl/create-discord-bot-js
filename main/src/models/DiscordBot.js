@@ -46,7 +46,7 @@ class DiscordBot {
         }
 
         try {
-            console.log('Closing server...')
+            console.log('Closing server...');
             this.server.close();
             this.server = false;
             return;
@@ -61,10 +61,13 @@ class DiscordBot {
 
     useMiddleware() {
 
-        if(!this.middleware.length < 1) {
+        if(this.middleware.length < 1) {
             console.log('Discord Bot has no middleware');
             return;
         }
+
+        // Check for middleware
+        console.log('First item in middlware array:', this.middleware[0]);
 
         try{
             for(let i = 0; i < this.middleware.length; i++) {
