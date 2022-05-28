@@ -17,9 +17,12 @@ beforeAll(() => {
     Bot = newBot;
 });
 
+afterEach(() => {
+    Bot.stopListening();
+})
+
 describe('DiscordBot constructor', () => {
 
-    
     it('should instantiate a new Bot object of type App', () => {
         expect(Bot).not.toBeNull();
     });
@@ -39,3 +42,10 @@ describe('startUpDiscordBot', () => {
         expect(startUpDiscordBot(Bot)).toBe(true);
     });
 });
+
+describe('stopListening', () => {
+    
+    it("should close the DiscordBot's express app currently listening for a port", () => {
+        expect(Bot.server).toBe(false);
+    });
+})
