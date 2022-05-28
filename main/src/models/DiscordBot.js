@@ -4,13 +4,15 @@ class DiscordBot {
 
     /**
      * 
-     * @param {Express} app The DiscordBots express application
-     * @param {string | number} PORT DiscordBot's express app will listen for this port number
+     * @param {Express} options The DiscordBots options for its express application
+     * @param {null | Array} middleware Array of middleware used by DiscordBot's express application 
+     * @param
      */ 
     constructor(options, middleware=null) {
         this.app = options.app;
         this.PORT = options.PORT;
         this.middleware = middleware || null;
+        this.server = false;
     }
 
     /**
@@ -24,8 +26,29 @@ class DiscordBot {
     // Method to listen for app on instance's port
     listenForPort() {
 
-        try{
-            this.app.listen(this.PORT);
+        if(this.server) {
+            console.log("DiscordBot's express application is already listening on port:" + this.PORT);
+            return;
+        };
+
+        try {
+            this.server = this.app.listen(this.PORT);
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    stopListening() {
+
+        if(!this.server) {
+            console.log("DiscordBot's express application is not listening for any ports.");
+            return;
+        }
+
+        try {
+            this.server.close();
+            this.server = false;
+            return;
         } catch (err) {
             throw err;
         }
