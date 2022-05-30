@@ -12,10 +12,10 @@ export const startUpDiscordBot = (bot) => {
     };
 
     try {
-        // Tell express app to start listening on the specified port on DiscordBot
+        // Tell DiscordBot's express app to start listening on the specified .env port
         bot.startListening();
 
-        // Use the Bot's middleware
+        // Use each of the DiscordBot's express middleware
         bot.useMiddleware();
 
         // Return true if no errors thrown
