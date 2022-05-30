@@ -45,9 +45,65 @@ export const verifyDiscordRequest = (clientKey) => {
     };
 };
 
-// Function to check for installed commands on the Discord server
-// If commands are not installed, install the commands
-// Otherwise continue running the express app
-export const checkGuildCommands = () => {
+export async function DiscordRequest(endpoint, options) {
 
+    const url = 'https://discord.com/api/v10/' + endpoint;
+
+    if (options.body) options.body = JSON.stringify(options.body);
+
+    const res = await fetch(url, {
+        headers: {
+            Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
+            'Content-Type': 'application/json; charset=UTF-8',
+            'User-Agent': 'DiscordBot (https://github.com/discord/discord-example-app, 1.0.0)',
+        },
+        ...options
+    });
+    // throw API errors
+    if (!res.ok) {
+        const data = await res.json();
+        console.log(res.status);
+        throw new Error(JSON.stringify(data));
+    }
+    return res;
+}
+
+export const checkGuildCommands = async (appId, guildId, commands) => {
+    
+    if (guildId === '' || appId === '') return;
+
+    commands.forEach((c) => checkGuildCommand(appId, guildId, c));
 };
+
+const checkGuildCommand = (appId, guildId, commandsArray) => {
+
+    const endpoint = `applications/${appId}/guilds/${guildId}/commands`;
+
+    try {
+        const res = await DiscordRequest(endpoint, { method: 'GET' });
+        const data = await res.json();
+
+        if (data) {
+            const installedNames = data.map((c) => c['name']);
+            if (!installedNames.includes(commandsArray['name'])) {
+                console.log(`Installing "${commandsArray['name']}"`);
+                installGuildCommand(appId, guildId, commandsArray);
+            } else {
+                console.log(`"${command['name']}" command already installed`);
+            }
+        }
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+const installGuildCommand = async (appId, guildId, command) => {
+
+    const endpoint = `applications/${appId}/guilds/${guildId}/commands`;
+
+    try {
+        await DiscordRequest(endpoint, { method: 'POST', body: command });
+    } catch (err) {
+        console.error(err);
+    }
+}
