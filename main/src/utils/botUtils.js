@@ -1,5 +1,6 @@
 import { DiscordBot } from "../models/index.js";
 import { verifyKey } from "discord-interactions";
+import fetch from 'node-fetch';
 
 /** 
  *@param {DiscordBot} bot An instance of class DiscordBot 
