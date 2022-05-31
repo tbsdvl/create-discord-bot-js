@@ -32,7 +32,10 @@ class DiscordBot {
         };
 
         try {
-            this.server = this.app.listen(this.PORT);
+            this.server = this.app.listen(this.PORT, () => {
+                console.log('Checking commands!');
+                checkGuildCommands(process.env.APP_ID, process.env.GUILD_ID, this.commands);
+            });
         } catch (err) {
             throw err;
         }

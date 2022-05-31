@@ -1,6 +1,5 @@
-import { interactionsRoute } from "./interactions";
-const router = require('express').Router();
+import interactionsRoutes from "./interactions.js";
 
-router.use('/interactions', interactionsRoute);
+router().use('/interactions', interactionsRoutes);
 
 export default router;
