@@ -75,7 +75,7 @@ export const checkGuildCommands = async (appId, guildId, commands) => {
     commands.forEach((c) => checkGuildCommand(appId, guildId, c));
 };
 
-const checkGuildCommand = async (appId, guildId, commandsArray) => {
+const checkGuildCommand = async (appId, guildId, command) => {
 
     const endpoint = `applications/${appId}/guilds/${guildId}/commands`;
 
@@ -85,9 +85,9 @@ const checkGuildCommand = async (appId, guildId, commandsArray) => {
 
         if (data) {
             const installedNames = data.map((c) => c['name']);
-            if (!installedNames.includes(commandsArray['name'])) {
-                console.log(`Installing "${commandsArray['name']}"`);
-                installGuildCommand(appId, guildId, commandsArray);
+            if (!installedNames.includes(command['name'])) {
+                console.log(`Installing "${command['name']}"`);
+                installGuildCommand(appId, guildId, command);
             } else {
                 console.log(`"${command['name']}" command already installed`);
             }

@@ -1,8 +1,7 @@
-import express from 'express';
 import { interactionsController } from '../../controllers';
-const router = express.Router();
+import router from 'express';
 
-router.route('/')
-    .post(interactionsController);
+router().route('/')
+    .post(interactionsController.postInteraction);
 
 export default router;
