@@ -106,4 +106,4 @@ const installGuildCommand = async (appId, guildId, command) => {
     } catch (err) {
         console.error(err);
     }
-}
+};
