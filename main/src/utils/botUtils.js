@@ -75,7 +75,7 @@ export const checkGuildCommands = async (appId, guildId, commands) => {
     commands.forEach((c) => checkGuildCommand(appId, guildId, c));
 };
 
-const checkGuildCommand = (appId, guildId, commandsArray) => {
+const checkGuildCommand = async (appId, guildId, commandsArray) => {
 
     const endpoint = `applications/${appId}/guilds/${guildId}/commands`;
 
