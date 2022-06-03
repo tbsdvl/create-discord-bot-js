@@ -1,5 +1,5 @@
 import express from 'express';
-import 'dotenv';
+import 'dotenv/config';
 import routes from './api/index.js';
 import { DiscordBot } from './models/index.js';
 import { startUpDiscordBot, verifyDiscordRequest } from './utils/botUtils.js';
