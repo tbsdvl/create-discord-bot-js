@@ -1,6 +1,7 @@
 import { DiscordBot } from "../models/index.js";
 import { verifyKey } from "discord-interactions";
 import fetch from 'node-fetch';
+import 'dotenv/config';
 
 /** 
  *@param {DiscordBot} bot An instance of class DiscordBot 
