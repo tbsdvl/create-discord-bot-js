@@ -1,7 +1,7 @@
-import { DiscordBot } from "../models/index.js";
-import { verifyKey } from "discord-interactions";
 import fetch from 'node-fetch';
 import 'dotenv/config';
+import { DiscordBot } from "../models/index.js";
+import { verifyKey } from "discord-interactions";
 
 /** 
  *@param {DiscordBot} bot An instance of class DiscordBot 
@@ -14,11 +14,11 @@ export const startUpDiscordBot = (bot) => {
     };
 
     try {
-        // Tell DiscordBot's express app to start listening on the specified .env port
-        bot.startListening();
-
         // Use each of the DiscordBot's express middleware
         bot.useMiddleware();
+        
+        // Tell DiscordBot's express app to start listening on the specified .env port
+        bot.startListening();
 
         // Return true if no errors thrown
         console.log(`DiscordBot listening on port: ${bot.PORT}`);

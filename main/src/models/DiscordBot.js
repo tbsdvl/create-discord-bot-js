@@ -1,4 +1,5 @@
 import Express from "express";
+import 'dotenv/config';
 import { checkGuildCommands } from '../utils/botUtils.js';
 
 class DiscordBot {
@@ -9,10 +10,11 @@ class DiscordBot {
      * @param {null | Array} middleware Array of middleware used by DiscordBot's express application 
      * @param
      */ 
-    constructor(options, middleware=null) {
+    constructor(options, middleware=null, commands=null) {
         this.app = options.app;
         this.PORT = options.PORT;
         this.middleware = middleware || [];
+        this.commands = commands || [];
         this.server = false;
     }
 
