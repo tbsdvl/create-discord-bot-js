@@ -1,4 +1,5 @@
 import Express from "express";
+import { checkGuildCommands } from '../utils/botUtils.js';
 
 class DiscordBot {
 
