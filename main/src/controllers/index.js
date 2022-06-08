@@ -1,5 +1,7 @@
-import { interactionsController } from "./interactionsController.js";
+import { postInteraction } from './interactionsController.js';
 
-export default {
-    interactionsController
-}
+const interactionsController = {
+    postInteraction
+};
+
+export default interactionsController;
