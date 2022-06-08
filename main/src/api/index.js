@@ -1,6 +1,8 @@
 import interactions from './interactions/index.js';
-import router from 'express';
+import express from 'express';
 
-router().use('/api/v1/', interactions);
+const router = express.Router();
+
+router.use('/api/v1/', interactions);
 
 export default router;

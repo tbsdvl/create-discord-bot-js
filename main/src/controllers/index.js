@@ -1,5 +1,5 @@
-import interactionsController from "./interactionsController";
+import { interactionsController } from "./interactionsController.js";
 
-export {
+export default {
     interactionsController
 }

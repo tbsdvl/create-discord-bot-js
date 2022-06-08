@@ -1,5 +1,8 @@
 import interactionsRoutes from "./interactions.js";
+import express from 'express';
 
-router().use('/interactions', interactionsRoutes);
+const router = express.Router();
+
+router.use('/interactions', interactionsRoutes);
 
 export default router;
