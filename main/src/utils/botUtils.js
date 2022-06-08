@@ -36,10 +36,12 @@ export const startUpDiscordBot = (bot) => {
 export const verifyDiscordRequest = (clientKey) => {
 
     return function (req, res, buf, encoding) {
+        const signature = req.get('X-Signature-Ed25519');
+        const timestamp = req.get('X-Signature-Timestamp');
         try {
             // Fix signature
-            if (req.get('X-Signature-Ed25519') && req.get('X-Signature-Timestamp')) {
-                verifyKey(buf, req, res, clientKey);
+            if (signature && timestamp) {
+                verifyKey(buf, signature, timestamp, clientKey);
             }
         } catch (err) {
             res.status(401).send('Invalid signature');

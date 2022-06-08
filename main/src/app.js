@@ -22,4 +22,4 @@ const commands = [
     TEST_COMMAND
 ];
 
-startUpDiscordBot(new DiscordBot(options, middleware));
+startUpDiscordBot(new DiscordBot(options, middleware, commands));
