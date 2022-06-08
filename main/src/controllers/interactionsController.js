@@ -1,5 +1,5 @@
 import 'discord-interactions';
-import { InteractionResponseType } from 'discord-interactions';
+import { InteractionResponseType, InteractionType } from 'discord-interactions';
 
 export const postInteraction = async (req, res) => {
     // Get the data from the request body's object
@@ -7,7 +7,7 @@ export const postInteraction = async (req, res) => {
 
     // Check for a Discord ping-pong connection
     // If the verification succeeds, proceed with application commands
-    if (type === InteractionResponseType.PING) {
+    if (type === InteractionType.PING) {
         return res.send({ type: InteractionResponseType.PONG });
     };
 
